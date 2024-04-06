@@ -1,6 +1,9 @@
 # Klim
 
 v0.2.0
+Using example data, API integration pending
+Missing search bar, configuration and climate details menus
+Missing calendar date picker
 
 # Gallery
 
