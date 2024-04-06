@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/*ID*/
+
+#logo{
+    height: 10%;
+    width: max-content;
+}
+#select-ciudades{
+    width: 20.83vw;
+    flex-flow: column;
+}
+#clima{
+    width: 75vw;
+    position: relative;
+}
+#clima .rb, #clima .lb{
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    width: calc(1em + 25px);
+    z-index: 2;
+}
+#clima .rb{
+    left: 98%;
+    transform: translate(-100%, -50%);
+}
+#clima .lb{
+    left: 2%;
+    transform: translateY(-50%);
+}
+#detalles{
+    width: 50px;
+    border-radius: 12px;
+}
+#options{
+    height: 10%;
+    max-width: min-content;
+    white-space: nowrap;
+    font-size: 0;
+}
+#options::after{
+    content: '';
+    margin-left: -10vh;
+}
+#options button{
+    height: 100%;
+    border-radius: 12px;
+}
+#options .popcontainer{
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1;
+}
+#options span button{
+    aspect-ratio: auto;
+    width: 100%
+}
+#dias{
+    height: 7.407%;
+    width: 75vw;
+    justify-content: space-between;
+}
+#dias .rb{
+    border-radius: 0 12px 0 0;
+}
+#dias .lb{
+    border-radius: 12px 0 0 0;
+}
+#ciudades{
+    width: 20.83vw;
+    height: 7.407%;
+    justify-content: space-between;
+}
+#ciudades span{
+    align-self: center;
+    margin-left: 40px;
+    
+}
+#addcity{
+    border-radius: 0 12px 0 0;
+}
+#fecha{
+    align-self: center;
+}
+#sorpresacontainer{
+    position: absolute;
+    width: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+#sorpresacontainer:focus-within{
+    width: 100vw;
+}
+#sorpresa{
+    transform: translate(-100%, -50%);
+    position: relative;
+    top: 50%;
+    width: 0;
+}
+#sorpresa:focus{
+    width: auto;
+}
+#sorpresa.animated:focus{
+    animation: gallop 5s linear;
+}
+@keyframes gallop{
+    0%{
+        transform: translate(-100%, -50%);
+        left: 0;
+    }
+    100%{
+        transform: translate(0, -50%);
+        left: 100vw
+    }
+}
+/*Class*/
+
+.cwrap{
+    min-width: 8px;
+    max-width: min-content;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.card{
+    border: 1px solid;
+    display: flex;
+}
+.hour{
+    min-width: calc(100%/3);
+    position: relative;
+    transition: opacity 1.5s;
+    transform: translateX(-100%);
+}
+.hour:not(.current) button:disabled, .hour:not(.current) img{
+    opacity: 27.5%;
+}
+
+.hour div:not(.popoverborder, .popover){
+    height: calc(50% - 2px);
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.hour img{
+    height: 120px;
+    width: 120px;
+}
+.bottomcard{
+    border-radius: 0 0 12px 12px;
+    border: 0;
+    z-index: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+.topcard{
+    border-radius: 12px 12px 0 0;
+    border-width: 0 0 2px 0;
+    z-index: 1;
+}
+.topcard, .bottomcard{
+    overflow-x: hidden;
+    text-overflow: clip;
+    min-width: fit-content;
+}
+.time{
+    display: block;
+}
+.empty{
+    visibility: hidden !important;
+}
+.empty > *{
+    visibility: visible;
+}
+/* .current{
+    min-width: 200px;
+} */
+.popover, .popoverborder{
+    clip-path: polygon(0 10px, calc(50% - 10px) 10px, 50% 0, calc(50% + 10px) 10px, 100% 10px, 100% 100%, 0 100%);
+}
+.popoverborder{
+    padding: 2px;
+    z-index: 2;
+    position: absolute;
+    box-sizing: border-box;
+    top: 100%;
+    width: 300%;
+    transform: translateX(calc(-100%/3));
+}
+.popover{
+    padding: 10px;
+    padding-top: 20px;
+}
+.popover p{
+    font-size: 12px;
+    white-space: normal;
+    margin: 0;
+}
+.current .popcontainer{
+    width: 50px;
+    position: absolute;
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+/*Element*/
+/* FIXME replace element selectors with class selectors */
+hr{
+    margin: 0px;
+}
+body{
+    box-sizing: border-box;
+    font-family: Ubuntu, monospace, Arial;
+    margin: 0px;
+}
+main{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+    box-sizing: border-box;
+    position: relative;
+}
+button{
+    border: 0px;
+    aspect-ratio: 1/1;
+}
+button:disabled{
+    height: 10vh;
+    border-radius: 12px;
+}
+img{
+    pointer-events: none;
+}
+i{
+    font-size: large;
+    margin: 0px;
+}
+li{
+    list-style: none;
+    margin: 20px 0 0 0;
+}
+p{
+    font-family: monospace, Arial;
+}
+ul{
+    margin: 0;
+}
+dialog::backdrop{
+    backdrop-filter: blur(3px);
+}
+:root{
+    font-size: 16px;
+}
+/*When the SCREEN is SMALLER THAN 850px
+⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌
+⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌
+⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌
+⢀⠠⠐⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀⡀⠀⠪
+⣬⠂⠀⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀⠀⠀⢡
+⣿⠀⠀⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑⠀⠁⢐
+⣿⠀⠀⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨⠀⠀⢔
+⣿⡯⠀⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪⠀⠀⢘
+⣿⣽⠀⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽⠀⢌⢎
+⣿⢾⠀⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹⠠⢐⢗
+⣿⡗⠀⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔⢅⢬⡷
+⣷⡇⡂⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏⡮⣷⡟
+⣷⣻⣅⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨⡪⡪⡰
+⣯⢷⣟⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐⡜⡪⡊
+⣿⢽⡾⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰⢱⢸⢨⢌
+⣯⢯⣟⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣⡃⠢⠁
+⡯⣟⣞⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪⡘⡌⠀
+⡯⣳⠯⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻⢼⣀⠀
+⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟
+⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾
+⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽
+*/
+
+@media screen and (max-width: 850px){
+    /*ID*/
+    #logo{
+        display: none;
+    }
+    #options{
+        height: 7%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: calc(1rem);
+    }
+    #dias{
+        margin-top: 7vh;
+    }
+    #space{
+        z-index: 1;
+        max-width: none;
+        width: calc(1rem);
+    }
+    /*Class*/
+    .hour:not(.current), .hour:not(.current) i{
+        display: none
+    }
+    .current{
+        min-width: 200px;
+        margin: 0 calc((100% - 200px) / 2);
+        transform: none;
+    } 
+    .cwrap:first-child{
+        position: absolute;
+        visibility: hidden;
+        right: 100%;
+    }
+    /*Element*/
+    main::before{
+        content: "Ciudades";
+        text-align: center;
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+        position: absolute;
+        width: 1rem;
+        height: 100%;
+    }
+    :root{
+        font-size: 10px;
+    }
+}

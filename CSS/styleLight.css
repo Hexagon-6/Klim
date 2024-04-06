@@ -1,0 +1,47 @@
+:root{
+    --color1: #6cc6d2;
+    --color2: #8edcbe;
+    --color3: #cff06e;
+    --color4: #d9ddbb;
+    --color5: #13005A;    
+}
+
+.topcard, .bottomcard{
+    background-color: var(--color1);
+}
+.popover{
+    background-color: var(--color1);
+}
+.popoverborder{
+    background-color: var(--color5);
+}
+
+#options button{
+    background-color: var(--color2);
+}
+#options button:hover{
+    border: dashed var(--color3) 4px;
+}
+
+button{
+    background-color: var(--color3);
+}
+button:not(.hour>* button):hover{
+    background-color: var(--color5);
+}
+button:not(.hour>* button):not(#options button):hover i{
+    color: var(--color3);
+}
+i{
+    color: var(--color5);
+}
+hr{
+    border-color: var(--color5);
+}
+main{
+    color: var(--color5);
+    background-color: var(--color2);
+}
+main::before{
+    background-color: var(--color3);
+}

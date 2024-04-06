@@ -1,0 +1,4 @@
+/* add a transition for the "current" class so it slowly fades to be like the not-focused "hours". For the movement, add a transition for translation and modify 
+the translate property from js; when the transition is finished, replace the elements in their current, translated positions, since they will have already moved to 
+their corresponding spaces, there will be no visual difference in this process. As for the sides, you can make an "hour" clone and place it to the right (translated),
+hiding it with overflow:hidden */
