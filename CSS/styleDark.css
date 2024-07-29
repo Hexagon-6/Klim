@@ -5,8 +5,8 @@
     --color4: #03C988;
     --color5: #FBFFDC;
 }
-
-.topcard, .bottomcard{
+/*FIXME change color pallette*/
+.card{
     background-color: var(--color1);
 }
 .popover{
@@ -15,14 +15,22 @@
 .popoverborder{
     background-color: var(--color5);
 }
+.data button{
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(32, 32, 32, 0.3) 50%, rgba(255, 255, 255, 0.3) 100%);
+}
 
+#showhidecitymenu{
+    background-color: var(--color3);
+}
 #options button{
-    background-color: var(--color2);
+    background-color: #00000000;
 }
 #options button:hover{
     border: dashed var(--color3) 4px;
 }
-
+#citysearchbar{
+    border: solid 2px var(--color5);
+}
 button{
     background-color: var(--color3);
 }
@@ -35,16 +43,29 @@ button:not(.hour>* button):hover{
 button:not(.hour>* button):not(#options button):hover :is(i, span){
     color: var(--color3);
 }
+button:not(.hour:not(.current) button):hover i, button:not(.hour:not(.current) button):active i{
+    bottom: 1px;
+    text-shadow: -1px 4px 0 #7f8170, -1px 3px 0 #bcbfa7, 0 2px 0 #bcbfa7, 0 1px 0 #bcbfa7;
+}
 i{
     color: var(--color5);
+}
+input{
+    color: var(--color5);
+    background-color: var(--color1);
+    color-scheme: dark;
+    padding-inline-start: 8%;
 }
 hr{
     border-color: var(--color5);
 }
+dialog{
+    color: var(--color5)
+}
 main{
     color: var(--color5);
     background-color: var(--color2);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(32, 32, 32, 0.3) 45%, rgba(255, 255, 255, 0.3) 100%);
 }
-main::before{
-    background-color: var(--color3);
-}
+/* TODO change color pallette of the shadow to enhance the 3d effect, and move bottom property to main sheet */
+/* TODO try applying only one color sheet, and only changing the root definition of colors in separate files */

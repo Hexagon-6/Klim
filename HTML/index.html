@@ -19,12 +19,15 @@
                 <button id = "addcity"> <i class = "fa-solid fa-plus"> </i></button>
             </div>
             <div class = "card bottomcard" id = "select-ciudades">
+                <!-- FIXME make list items clickable and add a city code property -->
+                <!-- city code could be either in id or custom property -->
                 <ul>
                     <li>Buenos Aires</li>
                     <li>New York</li>
                     <li>Mordor</li>
                 </ul>
             </div>
+            <div id = "showhidecitymenu"><span>Ciudades</span></div>
         </div>
     
         <div class = "cwrap" id = "space"></div>
@@ -49,7 +52,7 @@
             </div>
             <div class = "card topcard" id = "dias">
                 <button class = "lb"> <i class = "fa-solid fa-caret-left"></i> </button>
-                <span id = "fecha">29/6/2007</span>
+                <input type = "date" id = "fecha" value = "2007-06-29">
                 <button class = "rb">
                     <i class = "fa-solid fa-caret-right"></i>
                 </button>
@@ -63,19 +66,19 @@
                     </div>
                     <div class = "data">
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> </button>
+                            <button title = "Temperatura" disabled> <i class="fa-solid fa-temperature-half"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-water"></i> </button> 
+                            <button title = "Humedad" disabled> <i class="fa-solid fa-water"></i> </button> 
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
+                            <button title = "Sensación térmica" disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-droplet"></i> </button>
+                            <button title = "Precipitaciones" disabled> <i class="fa-solid fa-droplet"></i> </button>
                             <span></span>
                         </div>
                     </div>
@@ -87,19 +90,19 @@
                     </div>
                     <div class = "data">
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> </button>
+                            <button title = "Temperatura" disabled> <i class="fa-solid fa-temperature-half"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-water"></i> </button> 
+                            <button title = "Humedad" disabled> <i class="fa-solid fa-water"></i> </button> 
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
+                            <button title = "Sensación térmica" disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-droplet"></i> </button>
+                            <button title = "Precipitaciones" disabled> <i class="fa-solid fa-droplet"></i> </button>
                             <span></span>
                         </div>
                     </div>
@@ -122,19 +125,19 @@
                     <hr>
                     <div class = "data">
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> </button>
+                            <button title = "Temperatura" disabled> <i class="fa-solid fa-temperature-half"></i> </button>
                             <span>30°</span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-water"></i> </button> 
+                            <button title = "Humedad" disabled> <i class="fa-solid fa-water"></i> </button> 
                             <span>2</span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
+                            <button title = "Sensación térmica" disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
                             <span>30°</span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-droplet"></i> </button>
+                            <button title = "Precipitaciones" disabled> <i class="fa-solid fa-droplet"></i> </button>
                             <span>3</span>
                         </div>
                     </div>
@@ -146,19 +149,19 @@
                     </div>
                     <div class = "data">
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> </button>
+                            <button title = "Temperatura" disabled> <i class="fa-solid fa-temperature-half"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-water"></i> </button> 
+                            <button title = "Humedad" disabled> <i class="fa-solid fa-water"></i> </button> 
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
+                            <button title = "Sensación térmica" disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-droplet"></i> </button>
+                            <button title = "Precipitaciones" disabled> <i class="fa-solid fa-droplet"></i> </button>
                             <span></span>
                         </div>
                     </div>
@@ -170,19 +173,19 @@
                     </div>
                     <div class = "data">
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> </button>
+                            <button title = "Temperatura" disabled> <i class="fa-solid fa-temperature-half"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-water"></i> </button> 
+                            <button title = "Humedad" disabled> <i class="fa-solid fa-water"></i> </button> 
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
+                            <button title = "Sensación térmica" disabled> <i class="fa-solid fa-temperature-half"></i> <i class="fa-solid fa-user-tie"></i> </button>
                             <span></span>
                         </div>
                         <div>
-                            <button disabled> <i class="fa-solid fa-droplet"></i> </button>
+                            <button title = "Precipitaciones" disabled> <i class="fa-solid fa-droplet"></i> </button>
                             <span></span>
                         </div>
                     </div>
@@ -190,12 +193,17 @@
                 <button class = "rb"><i class = "fa-solid fa-caret-right"></i></button>
             </div> 
         </div>
-        <dialog id = "configmenu">
-            <p>Configuración</p>
-            <button id = "closeconfigmenu"><span>Cerrar</span></button>
+        <dialog id = "configmenu" class = "card">
+            <span>Configuración</span>
+            <ul>
+                <li>...</li>
+            </ul>
+            <button id = "closeconfigmenu" class = "close"><span><i class = "fa-solid fa-x"></i></span></button>
         </dialog>
-        <dialog id = "addcitymenu">
-            <button id = "closecitiesmenu"><span>Cerrar</span></button>
+        <dialog id = "addcitymenu" class = "card">
+            <span>Ciudades</span>
+            <input type="search" id = "citysearchbar">
+            <button id = "closecitiesmenu" class = "close"><span><i class = "fa-solid fa-x"></i></span></button>
         </dialog>
         <div id = "sorpresacontainer">
             <img id = "sorpresa" tabindex = "-1" src="../Media/honse.gif" alt="surprise">

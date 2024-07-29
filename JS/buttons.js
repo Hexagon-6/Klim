@@ -1,11 +1,13 @@
-import {getData} from './data.js';
-getData(16801);
+import {setData} from './data.js';
+/* setData(16801)
+.then(response => console.log(response)); */
 //options bar
 //TODO add some options
+let currentCity;
 const [configBtn, emptyBtn, themeBtn, updateBtn, aboutBtn, surpriseBtn] = document.getElementById('options').getElementsByTagName('button');
 
 configBtn.addEventListener('click', () => {
-    dialog = document.getElementById('configmenu');
+    const dialog = document.getElementById('configmenu');
     dialog.showModal();
 })
 
@@ -28,12 +30,7 @@ updateBtn.addEventListener('click', () => {
 
 aboutBtn.addEventListener('click', () => {
     const popover = aboutBtn.nextSibling.nextSibling;
-    if(popover.getAttribute('hidden') === ""){
-        popover.removeAttribute('hidden');
-    }
-    else{
-        popover.setAttribute('hidden', true);
-    }
+    showDetails(popover)
 })
 
 surpriseBtn.addEventListener('click', () => {
@@ -51,45 +48,45 @@ surpriseBtn.addEventListener('click', () => {
 const addCityBtn = document.getElementById('addcity');
 
 addCityBtn.addEventListener('click', () => {
-    dialog = document.getElementById('addcitymenu');
+    const dialog = document.getElementById('addcitymenu');
     dialog.showModal();
 })
 
 //change date
-//TODO add manual date selection
 const changeDayLeftBtn = document.getElementById('dias').getElementsByClassName('lb')[0];
 const changeDayRightBtn = document.getElementById('dias').getElementsByClassName('rb')[0];
 
 changeDayLeftBtn.addEventListener('click', () => {
-    const dateSpan = document.getElementById('fecha');
-    
-    const [d, m, y] = dateSpan.innerText.split('/');
-    const dateMinusOne = Date.parse(`${y}/${m}/${d}`) - 86400000;
-    const newDate = new Date(dateMinusOne); 
-    const newString = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`; 
-    
-    dateSpan.innerText = newString;
+    changeDay(-1);
 })
 
 changeDayRightBtn.addEventListener('click', () => {
-    const dateSpan = document.getElementById('fecha');
-    
-    const [d, m, y] = dateSpan.innerText.split('/');
-    const datePlusOne = Date.parse(`${y}/${m}/${d}`) + 86400000;
-    const newDate = new Date(datePlusOne); 
-    const newString = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`; 
-    
-    dateSpan.innerText = newString;
+    changeDay(1);
 })
-function piss(){console.log("piss")}
+
+function changeDay(direction){
+    const dateInput = document.getElementById('fecha');
+    
+    const [y, m, d] = dateInput.value.split('-');
+    const datePlusOne = Date.parse(`${y}/${m}/${d}`) + (86400000 * direction);
+    const newDate = new Date(datePlusOne); 
+    const newString = `${newDate.getFullYear()}-${X2XX(newDate.getMonth() + 1)}-${X2XX(newDate.getDate())}`; 
+    
+    dateInput.value = newString;
+}
+function X2XX(monthOrDay){
+    return monthOrDay < 10 ? `0${monthOrDay}` : monthOrDay;
+}
+
 //move hour
-//TODO copy the horizontal bar and the details button to the new current hour when the button is clicked
+//FIXME error on details display
 const changeHourLeftBtn = document.getElementById('clima').getElementsByClassName('lb')[0];
 const changeHourRightBtn = document.getElementById('clima').getElementsByClassName('rb')[0];
 
-changeHourLeftBtn.addEventListener('click', () => {
+changeHourRightBtn.addEventListener('click', () => {
     const hours = document.querySelectorAll('.hour');
     const current = document.getElementsByClassName('current')[0];
+    console.log(current.querySelector('.time').innerText);
     const nextCurrent = hours[Math.ceil(hours.length/2)];
     const oldDetailsBtn = current.querySelector('.popcontainer');
     const handleClick = () => {
@@ -118,9 +115,10 @@ changeHourLeftBtn.addEventListener('click', () => {
     });
 
 })
-changeHourRightBtn.addEventListener('click', () => {
+changeHourLeftBtn.addEventListener('click', () => {
     const hours = document.querySelectorAll('.hour');
     const current = document.getElementsByClassName('current')[0];
+    console.log(current.querySelector('.time').innerText);
     const nextCurrent = hours[Math.floor(hours.length/2)-1];
     const oldDetailsBtn = current.querySelector('.popcontainer');
     const handleClick = () => {
@@ -169,16 +167,35 @@ function showDetails(popover){
 //close configuration menu
 const closeConfigBtn = document.getElementById('closeconfigmenu');
 closeConfigBtn.addEventListener('click', () => {
-    dialog = document.getElementById('configmenu');
+    const dialog = document.getElementById('configmenu');
     dialog.close();
 })
 
 //close cities menu
 //TODO add city search bar
+//TODO allow city selection from the list elements
 const closeCitiesBtn = document.getElementById('closecitiesmenu');
 closeCitiesBtn.addEventListener('click', () => {
-    dialog = document.getElementById('addcitymenu');
+    const dialog = document.getElementById('addcitymenu');
     dialog.close();
 })
 
-//TODO connect to api data 
+//open/close cities menu in small screen
+const showHideCityMenuBtn = document.getElementById('showhidecitymenu');
+showHideCityMenuBtn.addEventListener('click',  () => {
+    const cityColumn = document.getElementsByClassName('cwrap')[0];
+    if(cityColumn.classList.contains('showing')){
+        cityColumn.classList.remove('showing');
+
+        const ciudadesText = document.createElement('span');
+        ciudadesText.innerText = "Ciudades";
+        showHideCityMenuBtn.firstChild.replaceWith(ciudadesText);
+    }
+    else{
+        cityColumn.classList.add('showing');
+
+        const arrow = document.createElement('i');
+        arrow.classList.add('fa-solid', 'fa-caret-right');
+        showHideCityMenuBtn.firstChild.replaceWith(arrow);
+    }
+})

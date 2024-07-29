@@ -5,7 +5,7 @@
     --color4: #d9ddbb;
     --color5: #13005A;    
 }
-
+/*FIXME change color pallette*/
 .topcard, .bottomcard{
     background-color: var(--color1);
 }
@@ -15,12 +15,19 @@
 .popoverborder{
     background-color: var(--color5);
 }
-
+    
+#showhidecitymenu{
+    background-color: var(--color3);
+}
 #options button{
     background-color: var(--color2);
 }
 #options button:hover{
     border: dashed var(--color3) 4px;
+}
+#fecha{
+    background-color: var(--color1);
+    color-scheme: light;
 }
 
 button{
@@ -32,7 +39,14 @@ button:not(.hour>* button):hover{
 button:not(.hour>* button):not(#options button):hover i{
     color: var(--color3);
 }
+button:not(.hour:not(.current) button):hover i, button:not(.hour:not(.current) button):active i{
+    bottom: 1px;
+    text-shadow: -1px 4px 0 #47483a, -1px 3px 0 #6f715d, -1px 2px 0 #6f715d, -1px 1px 0 #6f715d, -1px 0px 0 #6f715d;
+}
 i{
+    color: var(--color5);
+}
+input{
     color: var(--color5);
 }
 hr{
@@ -41,7 +55,4 @@ hr{
 main{
     color: var(--color5);
     background-color: var(--color2);
-}
-main::before{
-    background-color: var(--color3);
 }

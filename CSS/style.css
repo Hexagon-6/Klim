@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 /*ID*/
-
+/*TODO add gradients and shadows and etc*/
 #logo{
     height: 10%;
     width: max-content;
@@ -9,6 +9,9 @@
 #select-ciudades{
     width: 20.83vw;
     flex-flow: column;
+}
+#select-ciudades li{
+    font-weight: bold;
 }
 #clima{
     width: 75vw;
@@ -75,14 +78,16 @@
 }
 #ciudades span{
     align-self: center;
-    margin-left: 40px;
-    
+    flex-grow: 1;
+    text-align: center;
 }
 #addcity{
     border-radius: 0 12px 0 0;
 }
 #fecha{
+    border: none;
     align-self: center;
+    padding: 4px 10px;
 }
 #sorpresacontainer{
     position: absolute;
@@ -105,6 +110,7 @@
 #sorpresa.animated:focus{
     animation: gallop 3.5s linear;
 }
+
 @keyframes gallop{
     0%{
         transform: translate(-100%, -50%);
@@ -124,21 +130,26 @@
     display: flex;
     flex-flow: column nowrap;
 }
-.card{
-    border: 1px solid;
-    display: flex;
+.cwrap:first-child #showhidecitymenu{
+    display: none;
 }
-.hour{
-    min-width: calc(100%/3);
-    position: relative;
-    transition: transform 1s;
-    transform: translateX(-100%);
+.card{
+    display: flex;
+    overflow-x: hidden;
+    text-overflow: clip;
+    min-width: fit-content;
 }
 .movingleft{
     transform: translateX(-200%);
 }
 .movingright{
     transform: translateX(0);
+}
+.hour{
+    min-width: calc(100%/3);
+    position: relative;
+    transition: transform 1s;
+    transform: translateX(-100%);
 }
 .hour:not(.current) :is(button, hr){
     transition: opacity 1s;
@@ -174,13 +185,9 @@
 }
 .topcard{
     border-radius: 12px 12px 0 0;
+    border-style: solid;
     border-width: 0 0 2px 0;
     z-index: 1;
-}
-.topcard, .bottomcard{
-    overflow-x: hidden;
-    text-overflow: clip;
-    min-width: fit-content;
 }
 .time{
     display: block;
@@ -196,6 +203,7 @@
 } */
 .popover, .popoverborder{
     clip-path: polygon(0 10px, calc(50% - 10px) 10px, 50% 0, calc(50% + 10px) 10px, 100% 10px, 100% 100%, 0 100%);
+    border-radius: 50px 50px 12px 12px / 22px 22px 12px 12px; /* FIXME jank, replace polygon by path and remove border */
 }
 .popoverborder{
     padding: 2px;
@@ -219,9 +227,27 @@
     transition: opacity 1.5s;
     opacity: 100%;
 }
-
+.current button:disabled{
+    background-size: contain;
+    position: relative;
+}
+.current button:disabled::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../Media/blob-scatter-haikei.svg");
+    background-size: contain;
+    opacity: 10%;
+    border-radius: inherit;
+}
+.close{
+    padding: 10px
+}
 /*Element*/
-/* FIXME replace element selectors with class selectors */
+
 hr{
     margin: 0px;
 }
@@ -249,11 +275,16 @@ img{
     pointer-events: none;
 }
 i{
+    position: relative;
     font-size: large;
-    margin: 0px;
+    margin: 0;
+    bottom: 0;
+    text-shadow: none;
+    transition: text-shadow 0.25s, bottom 0.25s;
 }
 li{
     list-style: none;
+    text-align: center;
     margin: 20px 0 0 0;
 }
 p{
@@ -261,6 +292,26 @@ p{
 }
 ul{
     margin: 0;
+    padding: 0;
+}
+input{
+    font-family: Ubuntu, monospace, Arial;
+    font-size: inherit;
+}
+input:focus{
+    outline: 0;
+}
+dialog{
+    border: none;
+    border-radius: 12px;
+    z-index: -10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+dialog > *{
+    margin: 10px 0;
+    border-radius: inherit;
 }
 dialog::backdrop{
     backdrop-filter: blur(3px);
@@ -268,30 +319,9 @@ dialog::backdrop{
 :root{
     font-size: 16px;
 }
-/*When the SCREEN is SMALLER THAN 850px
-⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌
-⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌
-⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌
-⢀⠠⠐⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀⡀⠀⠪
-⣬⠂⠀⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀⠀⠀⢡
-⣿⠀⠀⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑⠀⠁⢐
-⣿⠀⠀⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨⠀⠀⢔
-⣿⡯⠀⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪⠀⠀⢘
-⣿⣽⠀⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽⠀⢌⢎
-⣿⢾⠀⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹⠠⢐⢗
-⣿⡗⠀⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔⢅⢬⡷
-⣷⡇⡂⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏⡮⣷⡟
-⣷⣻⣅⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨⡪⡪⡰
-⣯⢷⣟⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐⡜⡪⡊
-⣿⢽⡾⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰⢱⢸⢨⢌
-⣯⢯⣟⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣⡃⠢⠁
-⡯⣟⣞⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪⡘⡌⠀
-⡯⣳⠯⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻⢼⣀⠀
-⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟
-⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾
-⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽
-*/
 
+/* Media */
+/* TODO make the cities button work */
 @media screen and (max-width: 850px){
     /*ID*/
     #logo{
@@ -303,41 +333,68 @@ dialog::backdrop{
         top: 0;
         right: 0;
         bottom: 0;
-        left: calc(1rem);
+        left: calc(1rem + 10px);
     }
     #dias{
         margin-top: 7vh;
     }
     #space{
-        z-index: 1;
         max-width: none;
-        width: calc(1rem);
+        width: calc(1rem + 10px);
     }
     /*Class*/
+    .hour{
+        transition-duration: 0.5s;
+    }
     .hour:not(.current), .hour:not(.current) i{
-        display: none
+        visibility: hidden;
+        opacity: 0;
+        width: 0;
+        min-width: 0;
+    }
+    .hour:not(.current) > *{
+        display: none;
     }
     .current{
         min-width: 200px;
         margin: 0 calc((100% - 200px) / 2);
         transform: none;
+        transition-duration: 0.5s;
     } 
     .cwrap:first-child{
         position: absolute;
-        visibility: hidden;
-        right: 100%;
+        z-index: 1;
+        transform: translateX(-100%);
     }
-    /*Element*/
-    main::before{
-        content: "Ciudades";
+    .cwrap:first-child.showing{
+        transition: transform 1s;
+        transform: translateX(0);
+    }
+    .cwrap:first-child #showhidecitymenu{
+        display: block;
         text-align: center;
         writing-mode: vertical-lr;
         transform: rotate(180deg);
         position: absolute;
         width: 1rem;
+        padding: 0 5px;
         height: 100%;
+        left: 100%;
+        border-radius: 12px 0 0 12px;
     }
+    .cwrap:first-child.showing #showhidecitymenu{
+        height: 15%;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        transition: height 0.5s;
+    }
+    /*Element*/
     :root{
-        font-size: 10px;
+        font-size: 12px;
+    }
+    i{
+        font-size: inherit;
     }
 }
+
+/* TODO make dialog box invisible while moving hour */
